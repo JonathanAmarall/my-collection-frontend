@@ -1,6 +1,7 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { debounceTime, Subject } from 'rxjs';
 import { AppComponentBase } from '../shared/components/app-component-base.component';
@@ -38,6 +39,8 @@ export class CollectionItemsComponent
 
   type: EType | undefined;
   status: EStatus | undefined;
+  sortOrder: string | undefined;
+  sortField: string | undefined;
   /**
    *
    */
@@ -49,10 +52,8 @@ export class CollectionItemsComponent
   }
 
   loadCollectionItems(event?: PageEvent) {
-    console.log(this.type);
     let pageIndex = 1;
     let pageSize = 5;
-    console.log(event);
     if (event !== undefined) {
       pageSize = event.pageSize;
       pageIndex = event.pageIndex + 1;
@@ -61,16 +62,14 @@ export class CollectionItemsComponent
     this.collectionItemService
       .get(
         this.globalFilter,
-        undefined,
-        undefined,
+        this.sortOrder,
+        this.sortField,
         this.status,
         this.type,
         pageIndex,
         pageSize
       )
       .subscribe((collectionItems) => {
-        console.log(collectionItems);
-
         this.dataSource.data = collectionItems.data;
         this.totalCount = collectionItems.totalCount;
         this.paginator.length = this.totalCount;
@@ -96,6 +95,14 @@ export class CollectionItemsComponent
       this.globalFilter = filter;
       this.loadCollectionItems();
     });
+
+    this.loadCollectionItems();
+  }
+
+  sortChange(sortState: Sort) {
+    console.log(sortState);
+    this.sortField = sortState.active;
+    this.sortOrder = sortState.direction;
 
     this.loadCollectionItems();
   }

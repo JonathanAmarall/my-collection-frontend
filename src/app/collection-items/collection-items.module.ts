@@ -17,6 +17,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatSelectModule,
     MatCardModule,
+    MatSortModule,
   ],
 })
 export class CollectionItemsModule {}
