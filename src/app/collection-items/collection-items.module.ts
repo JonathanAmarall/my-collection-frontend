@@ -10,18 +10,36 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CollectionItemsFilterComponent } from './collection-items-filter/collection-items-filter.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+
 @NgModule({
-  declarations: [CreateCollectionItemComponent, CollectionItemsComponent],
+  declarations: [
+    CreateCollectionItemComponent,
+    CollectionItemsComponent,
+    CollectionItemsFilterComponent,
+  ],
   imports: [
     CommonModule,
     CollectionItemsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatDialogModule,
     MatButtonModule,
     MatTableModule,
     MatIconModule,
     MatSnackBarModule,
+    MatTooltipModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatCardModule,
   ],
 })
 export class CollectionItemsModule {}

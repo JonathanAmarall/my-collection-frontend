@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
 import { LogoComponent } from './shared/components/logo/logo.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     NoopAnimationsModule,
     LayoutModule,
     MatToolbarModule,
