@@ -1,0 +1,54 @@
+<div class="container">
+  <div><h1>Árvore de localizações</h1></div>
+  <div class="row justify-content-end p-3">
+    <button mat-raised-button color="primary" (click)="createNewRoot()">
+      Cadastrar nova localização
+    </button>
+  </div>
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+      <button mat-icon-button disabled></button>
+      {{ node.initials }}
+    </mat-tree-node>
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: hasChild"
+      matTreeNodePadding
+    >
+      <button
+        mat-icon-button
+        [attr.aria-label]="'Toggle ' + node.initials"
+        matTreeNodeToggle
+      >
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+        </mat-icon>
+      </button>
+      {{ node.initials }}
+
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="addChildren(node)">
+          <mat-icon class="text-success">add</mat-icon>
+          Adicionar
+        </button>
+
+        <button mat-menu-item (click)="delete(node.id)">
+          <mat-icon class="text-danger">delete</mat-icon>
+          Deletar
+        </button>
+      </mat-menu>
+
+      <mat-progress-bar
+        *ngIf="node.isLoading"
+        mode="indeterminate"
+        class="tree-progress-bar"
+      ></mat-progress-bar>
+    </mat-tree-node>
+  </mat-tree>
+</div>

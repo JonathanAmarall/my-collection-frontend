@@ -1,0 +1,77 @@
+<h1 mat-dialog-title>Localização</h1>
+<form [formGroup]="formGroup">
+  <div mat-dialog-content></div>
+  <div class="row">
+    <div class="col-sm-4">
+      <mat-form-field class="input-style">
+        <mat-label>Sigla: * </mat-label>
+        <input matInput formControlName="initials" placeholder="PRT" />
+      </mat-form-field>
+      <mat-error *ngIf="formGroup.get('initials')?.hasError('maxlength')">
+        A descrição não pode ultrapassar <strong>7 caracteres.</strong>
+      </mat-error>
+    </div>
+
+    <div class="col-sm-8">
+      <mat-form-field class="input-style">
+        <mat-label>Descrição: * </mat-label>
+        <input
+          matInput
+          class="input-size"
+          formControlName="description"
+          maxlength="20"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div *ngIf="formGroup.get('automaticallyGenerate')?.value" class="row">
+    <div class="col-sm-6">
+      <mat-form-field class="input-style">
+        <mat-label>Quantidade a ser gerada: * </mat-label>
+        <input
+          matInput
+          type="number"
+          class="input-size"
+          formControlName="quantity"
+        />
+      </mat-form-field>
+      <mat-error *ngIf="formGroup.get('quantity')?.hasError('max')">
+        A quantidade não pode ultrapassar o número <strong>20.</strong>
+      </mat-error>
+    </div>
+    <div class="col-sm-6">
+      <mat-form-field>
+        <mat-label> Sequência a ser seguida: </mat-label>
+        <mat-select
+          class="input-size pt-2"
+          formControlName="identifycationType"
+        >
+          <mat-option [value]="1">Números</mat-option>
+          <mat-option [value]="2">Letras</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row justify-content-end pt-3">
+    <button
+      type="button"
+      mat-raised-button
+      class="mr-3"
+      (click)="close()"
+      color="basic"
+    >
+      Cancelar
+    </button>
+    <button
+      type="submit"
+      mat-raised-button
+      [disabled]="!formGroup.valid"
+      (click)="save()"
+      color="primary"
+    >
+      {{ txtButton }}
+    </button>
+  </div>
+</form>

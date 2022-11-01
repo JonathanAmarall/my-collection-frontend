@@ -7,6 +7,13 @@ import { CollectionItemService } from '../services/collection-item.service';
 
 @Component({
   templateUrl: './show-location-collection-item.component.html',
+  styles: [
+    `
+      .mat-suffix-icon:hover {
+        cursor: pointer;
+      }
+    `,
+  ],
 })
 export class ShowLocationCollectionItemComponent
   extends AppComponentBase

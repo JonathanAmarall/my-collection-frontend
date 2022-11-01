@@ -12,6 +12,7 @@ import { EStatus } from './models/EStatus';
 import { EType } from './models/EType';
 import { ICollectionItem } from './models/ICollectionItem';
 import { CollectionItemService } from './services/collection-item.service';
+import { LandCollectionItemComponent } from './land-collection-item/land-collection-item.component';
 
 @Component({
   templateUrl: './collection-items.component.html',
@@ -117,6 +118,13 @@ export class CollectionItemsComponent
   showLocation(locationId: string): void {
     this._dialog.open(ShowLocationCollectionItemComponent, {
       data: locationId,
+      width: '400px',
+    });
+  }
+
+  landCollectionItem(id: string) {
+    this._dialog.open(LandCollectionItemComponent, {
+      data: id,
       width: '400px',
     });
   }

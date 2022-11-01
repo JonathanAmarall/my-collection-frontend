@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CreateCollectionItemComponent } from './create-collection-item/create-collection-item.component';
 import { CollectionItemsComponent } from './collection-items.component';
 
 const routes: Routes = [

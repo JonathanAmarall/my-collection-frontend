@@ -96,7 +96,11 @@
           >
             Ver localização
           </button>
-          <button mat-menu-item *ngIf="iCanLend(element.status)">
+          <button
+            mat-menu-item
+            *ngIf="iCanLend(element.status)"
+            (click)="landCollectionItem(element.id)"
+          >
             Emprestar
           </button>
           <button mat-menu-item *ngIf="!element.locationId">

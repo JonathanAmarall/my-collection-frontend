@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { ShowLocationCollectionItemComponent } from './show-location-collection-item/show-location-collection-item.component';
+import { LandCollectionItemComponent } from './land-collection-item/land-collection-item.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ShowLocationCollectionItemComponent } from './show-location-collection-
     CollectionItemsComponent,
     CollectionItemsFilterComponent,
     ShowLocationCollectionItemComponent,
+    LandCollectionItemComponent,
   ],
   imports: [
     CommonModule,
