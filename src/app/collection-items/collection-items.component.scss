@@ -28,3 +28,25 @@
     width: 100%;
 }
 
+
+.status-AVAILABLE {
+    background-color: #c8e6c9;
+    color: #256029;
+    border-radius: 2px;
+    padding: 0.25em 0.5em;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .status-UNAVAILABLE {
+    background-color: #e6c8c8;
+    color: #602a25;
+    border-radius: 2px;
+    padding: 0.25em 0.5em;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }

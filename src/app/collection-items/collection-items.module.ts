@@ -18,12 +18,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { ShowLocationCollectionItemComponent } from './show-location-collection-item/show-location-collection-item.component';
 
 @NgModule({
   declarations: [
     CreateCollectionItemComponent,
     CollectionItemsComponent,
     CollectionItemsFilterComponent,
+    ShowLocationCollectionItemComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +45,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSelectModule,
     MatCardModule,
     MatSortModule,
+    MatMenuModule,
   ],
 })
 export class CollectionItemsModule {}

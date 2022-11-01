@@ -1,4 +1,6 @@
+import { ShowLocationCollectionItemComponent } from './show-location-collection-item/show-location-collection-item.component';
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
@@ -27,13 +29,13 @@ export class CollectionItemsComponent
   filter = new Subject<string>();
 
   displayedColumns: string[] = [
+    'actions',
     'title',
     'autor',
     'quantity',
     'edition',
     'itemType',
     'status',
-    'location',
   ];
   totalCount: number = 0;
 
@@ -46,7 +48,8 @@ export class CollectionItemsComponent
    */
   constructor(
     injector: Injector,
-    private collectionItemService: CollectionItemService
+    private collectionItemService: CollectionItemService,
+    private _dialog: MatDialog
   ) {
     super(injector);
   }
@@ -105,5 +108,16 @@ export class CollectionItemsComponent
     this.sortOrder = sortState.direction;
 
     this.loadCollectionItems();
+  }
+
+  iCanLend(status: EStatus): boolean {
+    return status == EStatus.AVAILABLE;
+  }
+
+  showLocation(locationId: string): void {
+    this._dialog.open(ShowLocationCollectionItemComponent, {
+      data: locationId,
+      width: '400px',
+    });
   }
 }

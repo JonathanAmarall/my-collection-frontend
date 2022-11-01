@@ -46,4 +46,9 @@ export class CollectionItemService {
 
     return this._http.get<ICollectionitemPaged>(url).pipe(take(1));
   }
+
+  getLocation(locationId: string): Observable<string> {
+    let url = BASE_URL + `collection-items/${locationId}/location`;
+    return this._http.get<string>(url).pipe(take(1));
+  }
 }

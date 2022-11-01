@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Localização:</h1>
+<div *ngIf="$location">
+  <h2>{{ $location | async }}</h2>
+</div>
+<div>
+  <button mat-button (click)="close()">Fechar</button>
+</div>
