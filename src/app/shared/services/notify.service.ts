@@ -22,7 +22,7 @@ export class NotifyService {
     this._snackBar.openFromComponent(NotifyComponent, {
       duration: 5000,
       data: msg,
-      panelClass: ['bg-success'],
+      panelClass: ['snackbar-container', 'success'],
       horizontalPosition: horizontalPosition,
       verticalPosition: verticalPosition,
     });

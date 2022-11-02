@@ -61,5 +61,10 @@ $fit-dash-theme: mat.define-light-theme((
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/* For use in src/lib/core/theming/_palette.scss */
+// Notify class 
 
+
+/* For use in src/lib/core/theming/_palette.scss */
+::ng-deep snack-bar-container.bg-success {
+  background-color: #00A868 !important;
+}

@@ -21,6 +21,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { ShowLocationCollectionItemComponent } from './show-location-collection-item/show-location-collection-item.component';
 import { LandCollectionItemComponent } from './land-collection-item/land-collection-item.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { ContactLookupTableComponent } from './contact-lookup-table/contact-lookup-table.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { LandCollectionItemComponent } from './land-collection-item/land-collect
     CollectionItemsFilterComponent,
     ShowLocationCollectionItemComponent,
     LandCollectionItemComponent,
+    ContactLookupTableComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +51,7 @@ import { LandCollectionItemComponent } from './land-collection-item/land-collect
     MatCardModule,
     MatSortModule,
     MatMenuModule,
+    NgxMaskModule.forRoot(),
   ],
 })
 export class CollectionItemsModule {}

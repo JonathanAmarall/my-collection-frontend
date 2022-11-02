@@ -4,17 +4,22 @@
       <mat-form-field class="input-full">
         <mat-label>Nome Completo:</mat-label>
         <input type="text" matInput formControlName="fullName" />
-        <input type="text" matInput formControlName="contacId" hidden />
+        <input type="text" matInput formControlName="contactId" hidden />
+
         <mat-icon
           matTooltip="Adicionar Contato salvo"
           mat-icon-button
           matSuffix
           class="mat-suffix-icon"
+          (click)="openContacts()"
           >search</mat-icon
         >
         <mat-icon mat-icon-button matSuffix class="mat-suffix-icon"
           >close</mat-icon
         >
+        <mat-error *ngIf="form.get('fullName')?.hasError('fullName')">
+          Insira um Nome Completo!
+        </mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -23,6 +28,9 @@
       <mat-form-field class="input-full">
         <mat-label>Email:</mat-label>
         <input type="text" matInput formControlName="email" />
+        <mat-error *ngIf="form.get('email')?.hasError('email')">
+          Insira um Email válido!
+        </mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -30,7 +38,15 @@
     <div>
       <mat-form-field class="input-full">
         <mat-label>Fone:</mat-label>
-        <input type="text" matInput formControlName="phone" />
+        <input
+          type="text"
+          mask="(00) 0 0000-0000"
+          matInput
+          formControlName="phone"
+        />
+        <mat-error *ngIf="form.get('phone')?.hasError('phone')">
+          Insira um Fone válido!
+        </mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -42,7 +58,7 @@
       (click)="save()"
       [disabled]="form.invalid"
     >
-      Salvar
+      Emprestar
     </button>
   </div>
 </form>

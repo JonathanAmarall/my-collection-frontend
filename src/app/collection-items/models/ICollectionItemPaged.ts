@@ -1,6 +1,6 @@
 import { ICollectionItem } from './ICollectionItem';
 
-export interface ICollectionitemPaged {
+export interface IPagedList<T> {
   totalCount: number;
-  data: ICollectionItem[];
+  data: T[];
 }

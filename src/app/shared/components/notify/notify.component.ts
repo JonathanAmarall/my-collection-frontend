@@ -7,9 +7,12 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
       {{ data }}
     </div>
   </span>`,
+  styleUrls: ['./notify.component.scss'],
 })
 export class NotifyComponent implements OnInit {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: string) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data);
+  }
 }
