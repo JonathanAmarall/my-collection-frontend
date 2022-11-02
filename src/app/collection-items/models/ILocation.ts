@@ -1,7 +1,6 @@
 export interface ILocation {
-  id: string;
   initials: string;
   description: string;
+  id: string;
   parentId?: string;
-  level: number;
 }

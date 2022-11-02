@@ -11,15 +11,26 @@
         margin:15px 5px;
         color: var(--primary);
     }
+
+    .container-button {
+        display: flex;
+        justify-content: flex-end;
+        width: 91%;
+        margin:5px;
+    }
    
     mat-card {
-        width: 90%;
+        width: 89%;
         display: flex;
 
     }
 
     .table {
-        width: 90%;
+        width: 91%;
+    }
+
+    mat-paginator {
+        width: 91%;
     }
 
 }
@@ -50,3 +61,4 @@
     font-size: 12px;
     letter-spacing: 0.3px;
   }
+

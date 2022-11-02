@@ -50,9 +50,9 @@ export class TreeLocationService {
     return this.http.post(url, data).pipe(take(1));
   }
 
-  createRoot(data: ILocation): Observable<LocationFlatNode[]> {
+  createRoot(data: ILocation): Observable<LocationFlatNode> {
     let url = BASE_URL + 'locations';
-    return this.http.post<LocationFlatNode[]>(url, data).pipe(take(1));
+    return this.http.post<LocationFlatNode>(url, data).pipe(take(1));
   }
 
   getRoots(): Observable<LocationFlatNode[]> {
@@ -68,5 +68,10 @@ export class TreeLocationService {
         )
       )
       .pipe(take(1));
+  }
+
+  delete(id: string) {
+    let url = BASE_URL + `locations/${id}`;
+    return this.http.delete(url).pipe(take(1));
   }
 }

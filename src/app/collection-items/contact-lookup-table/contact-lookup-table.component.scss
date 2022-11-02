@@ -1,6 +1,10 @@
 .body {
     width: 100%;
-
+    div {
+        .input-full{
+            width: 100%;
+        }
+    }
     table {
         width: 100%;
     }

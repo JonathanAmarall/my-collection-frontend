@@ -69,4 +69,13 @@ export class CollectionItemService {
 
     return this._http.get<IPagedList<IContact>>(url).pipe(take(1));
   }
+
+  setLocation(locationId: string, collectionItemId: string) {
+    let url = BASE_URL + `collection-items/${collectionItemId}`;
+    const data = {
+      locationId,
+      collectionItemId,
+    };
+    return this._http.put(url, data).pipe(take(1));
+  }
 }

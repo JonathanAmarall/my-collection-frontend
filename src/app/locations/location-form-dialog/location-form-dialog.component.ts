@@ -33,6 +33,7 @@ export class LocationFormDialogComponent
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super(injector);
+    console.log(this.data);
   }
 
   ngOnInit(): void {
@@ -41,7 +42,7 @@ export class LocationFormDialogComponent
     }
 
     if (this.data?.parentId !== undefined) {
-      // this.formGroup.get('parentId').setValue(this.data.parentId);
+      this.formGroup.get('parentId')?.setValue(this.data.parentId);
     }
   }
 

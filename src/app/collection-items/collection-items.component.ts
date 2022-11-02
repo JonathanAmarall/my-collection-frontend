@@ -1,3 +1,4 @@
+import { ILocation } from './../locations/interfaces/ILocation';
 import { ShowLocationCollectionItemComponent } from './show-location-collection-item/show-location-collection-item.component';
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,6 +14,7 @@ import { EType } from './models/EType';
 import { ICollectionItem } from './models/ICollectionItem';
 import { CollectionItemService } from './services/collection-item.service';
 import { LandCollectionItemComponent } from './land-collection-item/land-collection-item.component';
+import { SelectListLocationCollectionItemComponent } from './select-list-location-collection-item/select-list-location-collection-item.component';
 
 @Component({
   templateUrl: './collection-items.component.html',
@@ -49,10 +51,19 @@ export class CollectionItemsComponent
    */
   constructor(
     injector: Injector,
-    private collectionItemService: CollectionItemService,
+    private _collectionItemService: CollectionItemService,
     private _dialog: MatDialog
   ) {
     super(injector);
+  }
+
+  ngOnInit(): void {
+    this.filter.pipe(debounceTime(300)).subscribe((filter) => {
+      this.globalFilter = filter;
+      this.loadCollectionItems();
+    });
+
+    this.loadCollectionItems();
   }
 
   loadCollectionItems(event?: PageEvent) {
@@ -63,7 +74,7 @@ export class CollectionItemsComponent
       pageIndex = event.pageIndex + 1;
     }
 
-    this.collectionItemService
+    this._collectionItemService
       .get(
         this.globalFilter,
         this.sortOrder,
@@ -94,15 +105,6 @@ export class CollectionItemsComponent
     return title;
   }
 
-  ngOnInit(): void {
-    this.filter.pipe(debounceTime(300)).subscribe((filter) => {
-      this.globalFilter = filter;
-      this.loadCollectionItems();
-    });
-
-    this.loadCollectionItems();
-  }
-
   sortChange(sortState: Sort) {
     console.log(sortState);
     this.sortField = sortState.active;
@@ -123,9 +125,35 @@ export class CollectionItemsComponent
   }
 
   landCollectionItem(id: string) {
-    this._dialog.open(LandCollectionItemComponent, {
-      data: id,
-      width: '400px',
-    });
+    this._dialog
+      .open(LandCollectionItemComponent, {
+        data: id,
+        width: '400px',
+      })
+      .afterClosed()
+      .subscribe(() => this.loadCollectionItems());
+  }
+
+  setLocation(id: string) {
+    this._dialog
+      .open(SelectListLocationCollectionItemComponent, {
+        width: '500px',
+      })
+      .afterClosed()
+      .subscribe((location: ILocation) => {
+        if (location) {
+          this._collectionItemService.setLocation(location.id, id).subscribe({
+            next: () => {
+              console.log(
+                'Localização adicionada com sucesso!Localização adicionada com sucesso!'
+              );
+              this._notifyService.success({
+                msg: 'Localização adicionada com sucesso!',
+              });
+              this.loadCollectionItems();
+            },
+          });
+        }
+      });
   }
 }

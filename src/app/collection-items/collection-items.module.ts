@@ -1,3 +1,4 @@
+import { MatListModule } from '@angular/material/list';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CollectionItemsRoutingModule } from './collection-items.routing.module';
@@ -10,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { CollectionItemsFilterComponent } from './collection-items-filter/collection-items-filter.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -23,15 +23,16 @@ import { ShowLocationCollectionItemComponent } from './show-location-collection-
 import { LandCollectionItemComponent } from './land-collection-item/land-collection-item.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { ContactLookupTableComponent } from './contact-lookup-table/contact-lookup-table.component';
+import { SelectListLocationCollectionItemComponent } from './select-list-location-collection-item/select-list-location-collection-item.component';
 
 @NgModule({
   declarations: [
     CreateCollectionItemComponent,
     CollectionItemsComponent,
-    CollectionItemsFilterComponent,
     ShowLocationCollectionItemComponent,
     LandCollectionItemComponent,
     ContactLookupTableComponent,
+    SelectListLocationCollectionItemComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +53,7 @@ import { ContactLookupTableComponent } from './contact-lookup-table/contact-look
     MatSortModule,
     MatMenuModule,
     NgxMaskModule.forRoot(),
+    MatListModule,
   ],
 })
 export class CollectionItemsModule {}

@@ -1,4 +1,15 @@
 <div class="body">
+  <div>
+    <mat-form-field class="input-full" appearance="outline">
+      <mat-label>Filtro global</mat-label>
+      <input
+        matInput
+        type="text"
+        (keyup)="filter.next($any($event).target.value)"
+        matTooltip="Filtre todos os campos"
+      />
+    </mat-form-field>
+  </div>
   <table class="table" mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="fullName">
       <th mat-header-cell *matHeaderCellDef>Nome:</th>

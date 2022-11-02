@@ -2,7 +2,11 @@
   <div class="title">
     <h1>Minha coleção</h1>
   </div>
-
+  <div class="container-button">
+    <div>
+      <button mat-raised-button color="primary">Cadastrar Item</button>
+    </div>
+  </div>
   <mat-card>
     <mat-form-field class="input-full" appearance="outline">
       <mat-label>Filtro global</mat-label>
@@ -103,7 +107,11 @@
           >
             Emprestar
           </button>
-          <button mat-menu-item *ngIf="!element.locationId">
+          <button
+            mat-menu-item
+            *ngIf="!element.locationId"
+            (click)="setLocation(element.id)"
+          >
             Adicionar Localização
           </button>
         </mat-menu>

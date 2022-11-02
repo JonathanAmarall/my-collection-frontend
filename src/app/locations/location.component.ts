@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Injector } from '@angular/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { LocationFlatNode } from './models/LocationItemFlatNode';
@@ -7,7 +6,6 @@ import { DynamicDataSource } from './models/DynamicDataSource';
 import { MatDialog } from '@angular/material/dialog';
 import { ILocation } from './interfaces/ILocation';
 import { AppComponentBase } from 'src/app/shared/components/app-component-base.component';
-import { ITransferLocation } from './interfaces/ITransferLocation';
 import { LocationFormDialogComponent } from './location-form-dialog/location-form-dialog.component';
 
 @Component({
@@ -45,11 +43,9 @@ export class LocationComponent extends AppComponentBase {
           let copyData = this.dataSource.dataChange.value;
           this.treeLocationService
             .createRoot(data)
-            .subscribe((res: LocationFlatNode[]) => {
-              res.forEach((element) => {
-                element.expandable = true;
-                copyData.push(element);
-              });
+            .subscribe((res: LocationFlatNode) => {
+              res.expandable = true;
+              copyData.push(res);
               this.dataSource.dataChange.next(copyData);
             });
         }
@@ -64,55 +60,30 @@ export class LocationComponent extends AppComponentBase {
         if (data !== null && data !== undefined) {
           let copyData = this.dataSource.dataChange.value;
           data.level = +node.level + 1;
-          this.treeLocationService.createRoot(data).subscribe(
-            (res: LocationFlatNode[]) => {
-              res.forEach((element) => {
-                element.expandable = true;
-                copyData.push(element);
-              });
+
+          this.treeLocationService
+            .createRoot(data)
+            .subscribe((res: LocationFlatNode) => {
+              res.expandable = true;
+              copyData.push(res);
+
               this.dataSource.dataChange.next(copyData);
               this.dataSource.toggleNode(node, true);
-            },
-            (err) => this._notifyService.alert(err.error.message)
-          );
+            });
         }
       });
   }
 
-  update(node: LocationFlatNode) {
-    // this.dialog
-    //   .open(LocationFormDialogComponent, { data: { location: node } })
-    //   .afterClosed()
-    //   .subscribe((data: ILocation) => {
-    //     if (data !== null && data !== undefined)
-    //       this.treeLocationService.update(data).subscribe(
-    //         (res) => {
-    //           this.dataSource.updateNode(node.id, data);
-    //           this.getOrRefreshTree();
-    //           this.notifyService.info('Editado com sucesso!');
-    //         },
-    //         (err: any) => {
-    //           this.notifyService.alert(err.error.message);
-    //         }
-    //       );
-    //   });
-  }
-
   delete(id: string) {
-    // this.messageService
-    //   .confirm('Atenção!', 'Deseja mesmo remover esta localização?')
-    //   .afterClosed()
-    //   .subscribe((remove) => {
-    //     if (remove) {
-    //       this.treeLocationService.delete(id).subscribe(
-    //         () => {
-    //           this.dataSource.removeNodeById(id);
-    //           this.notifyService.info('Deletado com sucesso!');
-    //         },
-    //         (err) => this.messageService.alert('Ops!', err.error.message)
-    //       );
-    //     }
-    //   });
+    this.treeLocationService.delete(id).subscribe({
+      next: () => {
+        this.dataSource.removeNodeById(id);
+        this._notifyService.info({ msg: 'Deletado com sucesso!' });
+      },
+      error: (err) => {
+        this._notifyService.alert({ msg: err.error.message });
+      },
+    });
   }
 
   private getOrRefreshTree(): void {

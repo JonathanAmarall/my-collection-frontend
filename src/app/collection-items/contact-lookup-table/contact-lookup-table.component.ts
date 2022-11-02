@@ -3,7 +3,7 @@ import { Component, Inject, Injector, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subject } from 'rxjs';
+import { debounceTime, Subject } from 'rxjs';
 import { AppComponentBase } from 'src/app/shared/components/app-component-base.component';
 import { CollectionItemService } from '../services/collection-item.service';
 
@@ -34,6 +34,11 @@ export class ContactLookupTableComponent
   }
 
   ngOnInit(): void {
+    this.filter.pipe(debounceTime(300)).subscribe((filter) => {
+      this.globalFilter = filter;
+      this.loadContacts();
+    });
+
     this.loadContacts();
   }
 

@@ -1,0 +1,19 @@
+.container {
+    margin: 5px;
+
+    .container-title {
+        text-align: center;
+        .title {
+            color: var(--primary);
+            padding-top: 5px;
+        }
+    }
+    
+    .container-button-create {
+        float: right;
+    }
+
+    .container-tree{
+        padding-top: 50px;
+    }
+}

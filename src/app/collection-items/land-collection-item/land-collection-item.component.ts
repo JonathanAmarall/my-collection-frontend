@@ -25,6 +25,15 @@ export interface ILendCollectionItem {
       .input-full {
         width: 100%;
       }
+
+      .mat-icon {
+        transform: scale(1.3);
+        margin-right: 15px;
+      }
+
+      .mat-icon:hover {
+        cursor: pointer;
+      }
     `,
   ],
 })
@@ -48,8 +57,6 @@ export class LandCollectionItemComponent
   }
 
   ngOnInit(): void {
-    console.log(this.collectionItemId);
-
     this.form = this.formBuilder.group({
       collectionItemId: [
         this.collectionItemId,
@@ -90,5 +97,10 @@ export class LandCollectionItemComponent
           this.form.patchValue(contact);
         }
       });
+  }
+
+  clearForm() {
+    this.form.reset();
+    this.form.setValue({ collectionItemId: this.collectionItemId });
   }
 }

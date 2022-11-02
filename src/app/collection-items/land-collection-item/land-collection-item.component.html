@@ -10,11 +10,16 @@
           matTooltip="Adicionar Contato salvo"
           mat-icon-button
           matSuffix
-          class="mat-suffix-icon"
+          class="mat-icon"
           (click)="openContacts()"
           >search</mat-icon
         >
-        <mat-icon mat-icon-button matSuffix class="mat-suffix-icon"
+        <mat-icon
+          matTooltip="Limpar formulário"
+          class="mat-icon"
+          mat-icon-button
+          matSuffix
+          (click)="clearForm()"
           >close</mat-icon
         >
         <mat-error *ngIf="form.get('fullName')?.hasError('fullName')">
