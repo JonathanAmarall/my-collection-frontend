@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, take } from 'rxjs';
 
 import { environment } from './../../../environments/environment';
-import { IPagedList } from '../models/ICollectionItemPaged';
+import { IPagedList } from '../models/IPagedList';
 import { IContact } from '../models/IContact';
 const BASE_URL = environment.baseUrls.server;
 
@@ -46,6 +46,11 @@ export class CollectionItemService {
     }
 
     return this._http.get<IPagedList<ICollectionItem>>(url).pipe(take(1));
+  }
+
+  create(data: ICollectionItem) {
+    let url = BASE_URL + 'collection-items';
+    return this._http.post(url, data).pipe(take(1));
   }
 
   getLocation(locationId: string): Observable<string> {

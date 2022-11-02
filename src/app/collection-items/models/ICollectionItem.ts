@@ -1,3 +1,4 @@
+import { IContact } from './IContact';
 import { EType } from './EType';
 import { EStatus } from './EStatus';
 
@@ -9,4 +10,5 @@ export interface ICollectionItem {
   itemType: EType;
   status: EStatus;
   location?: string;
+  contacts?: IContact[];
 }

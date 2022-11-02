@@ -1,3 +1,6 @@
+import { SeeLoandsComponent } from './see-locans/see-loans.component';
+import { IContact } from './models/IContact';
+import { CreateCollectionItemComponent } from './create-collection-item/create-collection-item.component';
 import { ILocation } from './../locations/interfaces/ILocation';
 import { ShowLocationCollectionItemComponent } from './show-location-collection-item/show-location-collection-item.component';
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
@@ -106,7 +109,6 @@ export class CollectionItemsComponent
   }
 
   sortChange(sortState: Sort) {
-    console.log(sortState);
     this.sortField = sortState.active;
     this.sortOrder = sortState.direction;
 
@@ -144,9 +146,6 @@ export class CollectionItemsComponent
         if (location) {
           this._collectionItemService.setLocation(location.id, id).subscribe({
             next: () => {
-              console.log(
-                'Localização adicionada com sucesso!Localização adicionada com sucesso!'
-              );
               this._notifyService.success({
                 msg: 'Localização adicionada com sucesso!',
               });
@@ -155,5 +154,18 @@ export class CollectionItemsComponent
           });
         }
       });
+  }
+
+  createOrUpdate(item?: ICollectionItem) {
+    this._dialog
+      .open(CreateCollectionItemComponent, { width: '500px' })
+      .afterClosed()
+      .subscribe(() => {
+        this.loadCollectionItems();
+      });
+  }
+
+  seeLoans(contacts: IContact[]) {
+    this._dialog.open(SeeLoandsComponent, { data: contacts, width: '500px' });
   }
 }

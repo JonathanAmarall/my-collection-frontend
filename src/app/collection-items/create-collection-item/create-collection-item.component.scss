@@ -1,0 +1,31 @@
+.body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        text-align: center;
+        color: var(--primary);
+        font-size: 1.4rem;
+    }
+
+    form {
+        .row {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            .input-full {
+                width: 100%;
+            }
+            .col {
+                width: 100%;
+                margin: 5px;
+            }
+
+        }
+
+        .container-button{
+            padding-top: 10px;
+        }
+    }
+}

@@ -24,6 +24,7 @@ import { LandCollectionItemComponent } from './land-collection-item/land-collect
 import { NgxMaskModule } from 'ngx-mask';
 import { ContactLookupTableComponent } from './contact-lookup-table/contact-lookup-table.component';
 import { SelectListLocationCollectionItemComponent } from './select-list-location-collection-item/select-list-location-collection-item.component';
+import { SeeLoandsComponent } from './see-locans/see-loans.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SelectListLocationCollectionItemComponent } from './select-list-locatio
     LandCollectionItemComponent,
     ContactLookupTableComponent,
     SelectListLocationCollectionItemComponent,
+    SeeLoandsComponent,
   ],
   imports: [
     CommonModule,
