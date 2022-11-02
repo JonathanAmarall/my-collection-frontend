@@ -14,9 +14,14 @@ export class LocationFormDialogComponent
 {
   formGroup: FormGroup = this.formBuilder.group({
     id: [],
-    initials: ['', [Validators.required, Validators.maxLength(7)]],
-    description: ['', [Validators.required, Validators.maxLength(20)]],
-    quantity: [1, [Validators.required, Validators.max(20)]],
+    initials: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(10)],
+    ],
+    description: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(100)],
+    ],
     parentId: [],
   });
 
@@ -33,7 +38,6 @@ export class LocationFormDialogComponent
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super(injector);
-    console.log(this.data);
   }
 
   ngOnInit(): void {

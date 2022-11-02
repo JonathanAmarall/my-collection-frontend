@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ILocation } from '../interfaces/ILocation';
 import { LocationFlatNode } from '../models/LocationItemFlatNode';
-import { ILocationProductTotalizers } from '../interfaces/ILocationProductTotalizers';
-import { ITransferLocation } from '../interfaces/ITransferLocation';
 
 const BASE_URL = environment.baseUrls.server;
-/**
- * Database for dynamic data. When expanding a node in the tree, the data source will need to fetch
- * the descendants data from the database.
- */
+
 @Injectable({ providedIn: 'root' })
 export class TreeLocationService {
   /**
    *
    */
   constructor(private http: HttpClient) {}
-  /** Initial data from database */
   initialData(): Observable<LocationFlatNode[]> {
     return this.getRoots();
   }
 
   getChildren(id: string): Observable<LocationFlatNode[]> {
-    // Realizar requisição no backend para buscar filhos deste nó
     let url = BASE_URL + 'locations/' + id + '/childrens';
 
     return this.http
@@ -63,6 +57,7 @@ export class TreeLocationService {
         map((x) =>
           x.map((data) => {
             data.expandable = true;
+            data.level = 0;
             return data;
           })
         )
